@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Details page";
+}
+
+@if (TempData["messaggioAggiunta"] is not null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["messaggioAggiunta"]
+    </div>
+}
+@if (TempData["messaggioErroreA"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["messaggioErroreA"]
+    </div>
+}
+
+<div>
+    <ul>
+        <li>Nome: @Model.Nome</li>
+        <li>Prezzo: @(Model.Prezzo)€</li>
+        <li>Descrizione: @Model.Descrizione</li>
+    </ul>
+    <a class="btn btn-primary" asp-controller="Scarpa" asp-action="Index">Vai alla lista</a>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ID">Modificare</a>
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.ID">Cancella</a>
+</div>

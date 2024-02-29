@@ -1,0 +1,46 @@
+@if (TempData["messaggioCancellato"] is not null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["messaggioCancellato"]
+    </div>
+}
+@if (TempData["messaggioErroreC"] is not null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["messaggioErroreC"]
+    </div>
+}
+
+<div class="container">
+    <h1 class="my-4 text-center">Elenco Scarpe</h1>
+    <a class="btn btn-success" asp-action="Add">Aggiungi scarpa</a>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Prezzo</th>
+                    <th>Descrizione</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var scarpa in Model)
+                {
+                    <tr>
+                        <td>@scarpa.ID</td>
+                        <td>@scarpa.Nome</td>
+                        <td>@string.Format("{0:C}", scarpa.Prezzo)</td>
+                        <td>@scarpa.Descrizione</td>
+                        <td>
+                            <a class="btn btn-info" asp-action="Details" asp-route-id="@scarpa.ID">Dettagli</a>
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@scarpa.ID">Modifica</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@scarpa.ID">Cancella</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
